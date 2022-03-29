@@ -4,20 +4,20 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Bookshop Website</title>
+<title>Vaalikone</title>
 </head>
 <body>
     <div style="text-align: center">
-        <h1>Admin Login</h1>
+        <h1>Ylläpito</h1>
         <form action="login" method="post">
-            <label for="email">Email:</label>
+            <label for="email">Sähköposti:</label>
             <input name="email" size="30" />
             <br><br>
-            <label for="password">Password:</label>
+            <label for="password">Salasana:</label>
             <input type="password" name="password" size="30" />
             <br>${message}
             <br><br>           
-            <button type="submit">Login</button>
+            <button type="submit">Kirjaudu</button>
         </form>
     </div>
 </body>
