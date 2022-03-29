@@ -1,5 +1,5 @@
 package dao;
-
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -47,11 +47,11 @@ ResultSet result = statement.executeQuery();
 
 User user = null;
 
-if (result.next()) {
+/*if (result.next()) {
     user = new User(dbUser, dbPassword);
     user.setFullname(result.getString("fullname"));
     user.setEmail(email);
-}
+}*/
 
 
 connection.close();
