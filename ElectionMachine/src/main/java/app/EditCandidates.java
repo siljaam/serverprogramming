@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.Dao;
-import java.Candidates;
+import app.Candidates;
 
 @WebServlet(
 		name = "EditCandidates",
@@ -31,11 +31,11 @@ public class EditCandidates extends HttpServlet {
 		if ( idValue != null ) {
 			try {
 				int id = Integer.parseInt(idValue);
-				//Dao class needs get candidate info method!
+			
 				Dao dao = new Dao();
-				Game game = dao.getGameInfo(id);
+				Candidates candidates = dao.getCandidateInfo(id);
 				
-				session.setAttribute("game", game);
+				session.setAttribute("candidate", candidates);
 				
 				RequestDispatcher rd = request.getRequestDispatcher("jsp/editCandidates.jsp");
 				rd.forward(request, response);
@@ -45,7 +45,7 @@ public class EditCandidates extends HttpServlet {
 			}
 		} else {
 			// Back to list
-			response.sendRedirect("/showdata");
+			response.sendRedirect("/");
 			
 		}
 	

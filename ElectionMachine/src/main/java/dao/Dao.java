@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
+import app.Candidates;
 
 
 public class Dao {
@@ -101,9 +101,9 @@ public class Dao {
 		return remove;
 	}
 	
-	public Game getGameInfo(int id) {
-		Game result = null;
-		String sql = "select * from gametable where id = ?";
+	public Candidates getCandidateInfo(int id) {
+		Candidates result = null;
+		String sql = "select * from vaalikone where ehdokas_id = ?";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 						
@@ -112,13 +112,12 @@ public class Dao {
 			ResultSet resultset = stmt.executeQuery();
 			
 			if (resultset.next()) {
-				result = new Game();
-				result.setId(resultset.getInt("id"));
-				result.setBreed(resultset.getString("breed"));
-				result.setWeight(resultset.getFloat("weight"));
+				result = new Candidates();
+				result.setEhdokas_id(resultset.getInt("id"));
+				result.setEtunimi(resultset.getString("Etunimi"));
+				result.setSukunimi(resultset.getString("Sukunimi"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
