@@ -47,11 +47,11 @@ ResultSet result = statement.executeQuery();
 
 User user = null;
 
-if (result.next()) {
+/*if (result.next()) {
     user = new User(dbUser, dbPassword);
     user.setFullname(result.getString("fullname"));
     user.setEmail(email);
-}
+}*/
 
 
 connection.close();
