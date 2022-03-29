@@ -1,4 +1,8 @@
+package app;
+
 import javax.servlet.http.HttpServlet;
+
+import com.google.api.server.spi.auth.common.User;
 
 import dao.Dao;
 
@@ -21,17 +25,16 @@ public class Login extends HttpServlet {
 	        String password = request.getParameter("salasana");
 	         
 	        Dao dao = new Dao();
-	         
 	        try {
-	            User user = dao.Dao.checkLogin(email, password);
+	            User user = dao.checkLogin(email, password);
 	            String destPage = "login.jsp";
 	             
 	            if (user != null) {
 	                HttpSession session = request.getSession();
 	                session.setAttribute("user", user);
-	                destPage = "home.jsp";
+	                destPage = "home.jsp"; //this needs to be changed later
 	            } else {
-	                String message = "Invalid email/password";
+	                String message = "K‰ytt‰j‰tunnus tai salasana v‰‰rin";
 	                request.setAttribute("message", message);
 	            }
 	             

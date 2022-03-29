@@ -1,3 +1,5 @@
+package app;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -54,24 +56,28 @@ public class EditCandidates extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws IOException, ServletException {
-	
-		
 		// Create connection
 		Dao dao=new Dao();
-		Game game = readGame(request);
+		Candidates candidate = readCandidates(request);
 		
-		dao.updateGame(game);
+		dao.updateCandidate(candidate);
 		
 		dao.close();
 
-		response.sendRedirect("/");  // redirect to candidates
+		response.sendRedirect("/");  // redirect to candidates list
 	}
 	
-	private Game readGame(HttpServletRequest request) {
-		Game game=new Game();
-		game.setBreed(request.getParameter("breed"));
-		game.setWeight(request.getParameter("weight"));
-		game.setId(Integer.parseInt(request.getParameter("id")));
-		return game;
+
+	private Candidates readCandidates(HttpServletRequest request) {
+		Candidates candidates=new Candidates();
+		candidates.setEhdokas_id(Integer.parseInt(request.getParameter("id")));
+		candidates.setEtunimi(request.getParameter("Etunimi"));
+		candidates.setSukunimi(request.getParameter("Sukunimi"));
+		candidates.setKotikunta(request.getParameter("Kotikunta"));
+		candidates.setIka(Integer.parseInt(request.getParameter("id")));
+		candidates.setEhdolle(request.getParameter("Ehdolle"));
+		candidates.setEdistaa(request.getParameter("Edistaa"));
+		
+		return candidates;
 	}
 }

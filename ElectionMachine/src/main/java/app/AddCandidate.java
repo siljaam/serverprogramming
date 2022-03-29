@@ -42,7 +42,7 @@ public class AddCandidate extends HttpServlet {
 				
 				// Save value and query total list
 				dao.saveCandidate(candidate);
-				ArrayList<Candidates> list=dao.readAllGame();
+				ArrayList<Candidates> list=dao.readAllCandidates();
 				
 				// print output and close connection
 				printCandidatesList(out, list);
