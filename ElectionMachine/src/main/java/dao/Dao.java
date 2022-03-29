@@ -29,5 +29,34 @@ public class Dao {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public User checkLogin(String email, String password) throws SQLException,
+    ClassNotFoundException {
+String jdbcURL = "jdbc:mysql://localhost:3306/vaalikone";
+String dbUser = "kayttaja";
+String dbPassword = "kukkuu";
+
+Class.forName("com.mysql.jdbc.Driver");
+Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+String sql = "SELECT * FROM kirjautuminen WHERE email = ? and salasana = ?";
+PreparedStatement statement = connection.prepareStatement(sql);
+statement.setString(1, email);
+statement.setString(2, password);
+
+ResultSet result = statement.executeQuery();
+
+User user = null;
+
+if (result.next()) {
+    user = new User(sql, sql);
+    ((Nimi) user).setFullname(result.getString("fullname"));
+    ((Object) user).setEmail(email);
 }
+
+connection.close();
+
+return user;
+
+}
+}
+	
