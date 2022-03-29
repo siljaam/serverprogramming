@@ -23,7 +23,7 @@ public class Login extends HttpServlet {
 	        Dao dao = new Dao();
 	         
 	        try {
-	            User user = userDao.checkLogin(email, password);
+	            User user = dao.Dao.checkLogin(email, password);
 	            String destPage = "login.jsp";
 	             
 	            if (user != null) {
