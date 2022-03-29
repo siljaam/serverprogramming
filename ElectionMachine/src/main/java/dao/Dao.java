@@ -34,32 +34,36 @@ public class Dao {
 		}
 	}
 
-	public int saveGame(Game game) {
+	public int saveGame(Candidates candidate) {
 		Statement stmt=null;
 		int count=0;
 		try {
 			stmt = conn.createStatement();
-			count=stmt.executeUpdate("insert into gametable(breed, weight) values('"+game.getBreed()+"', "+game.getWeight()+")");
+			count=stmt.executeUpdate("insert into gametable(breed, weight) values('"+candidate.getEhdokas_id()+"', "+candidate.getEtunimi()+")");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return count;
 	}
 	
-	public ArrayList<Game> readAllGame() {
-		ArrayList<Game> list=new ArrayList<>();
+	public ArrayList<Candidates> readAllCandidates() {
+		ArrayList<Candidates> list=new ArrayList<>();
 		Statement stmt=null;
 		int count=0;
 		try {
 			stmt = conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from gametable");
+			ResultSet rs=stmt.executeQuery("select * from vaalikone");
 			while (rs.next()) {
-				Game game=new Game();
-				game.setId(rs.getInt("id"));
-				game.setBreed(rs.getString("breed"));
-				game.setWeight(rs.getFloat("weight"));
-				list.add(game);
+				Candidates candidate=new Candidates();
+				candidate.setEhdokas_id(rs.getInt("id"));
+				candidate.setEtunimi(rs.getString("Etunimi"));
+				candidate.setSukunimi(rs.getString("Sukunimi"));
+				candidate.setPuolue(rs.getString("Puolue"));
+				candidate.setKotikunta(rs.getString("Kotikunta"));
+				candidate.setIka(rs.getInt("Ika"));
+				candidate.setEhdolle(rs.getString("Ehdolle"));
+				candidate.setEdistaa(rs.getString("Edistaa"));
+				list.add(candidate);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,16 +72,16 @@ public class Dao {
 		return list;
 	}
 	
-	public int updateGame(Game game) {
+	public int updateCandidate(Candidates candidate) {
 		int count = 0;
-		String sql = "update gametable set breed = ?, weight = ? where id = ?";
+		String sql = "update vaalikone set etunimi = ?, sukunimi = ? where ehdokas_id = ?";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			
-			stmt.setString(1, game.getBreed());
-			stmt.setFloat(2, game.getWeight());
+			stmt.setString(1, candidate.getEtunimi());
+			stmt.setString(2, candidate.getSukunimi());
 			
-			stmt.setInt(3, game.getId());
+			stmt.setInt(3, candidate.getEhdokas_id());
 			
 			count = stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -86,16 +90,16 @@ public class Dao {
 		}
 		return count;
 	}
-	public int deleteGame(Game game) throws SQLException {
+	public int deleteCandidate(Candidates candidate) throws SQLException {
 		
-		String sql = "DELETE FROM gametable WHERE id=?";
+		String sql = "DELETE FROM vaalikone WHERE Ehdokas_id=?";
 		 
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, game.getId());
+		stmt.setInt(1, candidate.getEhdokas_id());
 		 
 		int remove = stmt.executeUpdate();
 		if (remove > 0) {
-		    System.out.println("A user was deleted successfully!");
+		    System.out.println("Ehdokas poistettu onnistuneesti!");
 		}
 		
 		return remove;
