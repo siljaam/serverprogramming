@@ -146,7 +146,7 @@ public class Dao {
 		return result;
 	}
 	
-	 public User checkLogin(String email, String password) throws SQLException,
+	/* public User checkLogin(String email, String password) throws SQLException,
      ClassNotFoundException {
  String jdbcURL = "jdbc:mysql://localhost:3306/vaalikone";
  String dbUser = "root";
@@ -162,15 +162,15 @@ public class Dao {
  ResultSet result = statement.executeQuery();
 
  User user = null;
-/*
+
  if (result.next()) {
      user = new User(user);
      ((Object) user).setFullname(result.getString("fullname"));
      ((Object) user).setEmail(email);
  } this needs some fixing
-*/
+
  connection.close();
 
- return user;
+ return user;*/
 }
-}
+
