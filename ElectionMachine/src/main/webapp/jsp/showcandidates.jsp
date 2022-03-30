@@ -27,7 +27,8 @@
 	<th>Mitä asioita haluat edistää?</th>
 </tr>
 
-<c:forEach var="candidate" items="${requestScope.candidateslist}" >
+<c:forEach var="candidate" items="${requestScope.allcandidates}" >
+
 
 <h2><b>${candidate.ehdokas_id}:</b> ${candidate.etunimi} ${candidate.sukunimi} </h2>
 
