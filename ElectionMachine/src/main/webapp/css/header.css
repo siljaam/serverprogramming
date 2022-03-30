@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+body{
+	margin-top:-15px;
+	margin-left:0px;
+	margin-right:0px;
+}
 nav{
 	background-color: lightcyan;
 	padding: 15px;
