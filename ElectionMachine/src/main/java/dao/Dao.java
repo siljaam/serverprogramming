@@ -45,7 +45,7 @@ public class Dao {
 			stmt = conn.createStatement();
 			count=stmt.executeUpdate("insert into vaalikone(ehdokas_id, etunimi, sukunimi, puolue, ikä, kotikunta, ehdolle, edustaa, ammatti) "
 					+ "values('"+candidate.getEhdokas_id()+"', '"+candidate.getEtunimi()+"' '"+candidate.getSukunimi()+"' '"+candidate.getPuolue()+" '"+candidate.getKotikunta()+"'"
-							+ "'"+candidate.getIka()+"' '"+candidate.getEhdolle()+"' '"+candidate.getEdistaa()+"')");
+							+ "'"+candidate.getAmmatti()+"''"+candidate.getIka()+"' '"+candidate.getEhdolle()+"' '"+candidate.getEdistaa()+"')");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,11 +61,12 @@ public class Dao {
 			ResultSet rs=stmt.executeQuery("select * from vaalikone");
 			while (rs.next()) {
 				Candidates candidate=new Candidates();
-				candidate.setEhdokas_id(rs.getInt("id"));
+				candidate.setEhdokas_id(rs.getInt("EhdokasId"));
 				candidate.setEtunimi(rs.getString("Etunimi"));
 				candidate.setSukunimi(rs.getString("Sukunimi"));
 				candidate.setPuolue(rs.getString("Puolue"));
 				candidate.setKotikunta(rs.getString("Kotikunta"));
+				candidate.setAmmatti(rs.getString("Ammatti"));
 				candidate.setIka(rs.getInt("Ika"));
 				candidate.setEhdolle(rs.getString("Ehdolle"));
 				candidate.setEdistaa(rs.getString("Edistaa"));

@@ -35,9 +35,9 @@ public class ShowCandidates extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		Dao dao = new Dao();
-		ArrayList<Candidates> candidate = dao.readAllCandidates();
+		ArrayList<Candidates> candidates = dao.readAllCandidates();
 		
-		session.setAttribute("allcandidates", candidate);
+		session.setAttribute("allcandidates", candidates);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("jsp/showcandidates.jsp");
 		rd.forward(request, response);
