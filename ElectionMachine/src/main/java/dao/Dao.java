@@ -70,6 +70,7 @@ public class Dao {
 				candidate.setEhdolle(rs.getString("Ehdolle"));
 				candidate.setEdistaa(rs.getString("Edistaa"));
 				list.add(candidate);
+				System.out.println(list);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
