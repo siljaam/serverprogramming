@@ -27,7 +27,6 @@ public class Dao {
 			e.printStackTrace();
 		}
 	}
-
 	// Manually close DB-connection for releasing resource
 	public void close() {
 		try {
