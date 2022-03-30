@@ -22,10 +22,10 @@
                 <a class="nav-link active" href="jsp/showcandidates.jsp">Ehdokkaat</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="">Vastaa kysymyksiin</a>
+                <a class="nav-link active" href="addCandidates.jsp">Lis‰‰ ehdokas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="jsp/admin.jsp">Yll√§pito</a>
+                <a class="nav-link active" href="">Yll‰pito</a>
               </li>
             </ul>
             </div>
