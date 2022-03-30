@@ -3,8 +3,9 @@
   
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="app.Candidates" %> 
-<%@ include file="../header.html" %>
-
+<%@ include file="../header.html" %>  
+ <%@ page import="dao.Dao" %> 
+ <%@ include file="../header.html" %> 
 
     
 <!DOCTYPE html>
@@ -29,6 +30,8 @@
 				
 		<input type='submit' name='ok' value='Muokkaa'>
 	</form>
-
+<footer>
+ <p>Team 9 - Ville Lahtinen & Silja Markku </p>
+ </footer>
 </body>
 </html>

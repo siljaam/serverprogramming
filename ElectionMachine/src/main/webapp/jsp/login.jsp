@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ include file="../header.html" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ page import="java.util.ArrayList" %>   
+ <%@ page import="dao.Dao" %> 
+ <%@ include file="../header.html" %> 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,5 +25,9 @@
             <button type="submit">Kirjaudu</button>
         </form>
     </div>
+    
+    <footer>
+ <p>Team 9 - Ville Lahtinen & Silja Markku </p>
+ </footer>
 </body>
 </html>

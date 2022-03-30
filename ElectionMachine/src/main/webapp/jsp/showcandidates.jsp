@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page import="java.util.ArrayList" %>   
+<%@ page import="dao.Dao" %> 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="app.Candidates" %>
- <%@ include file="../header.html" %>  
+<%@ include file="../header.html" %>
+     
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 	<th>Mitä asioita haluat edistää?</th>
 </tr>
 
-<c:forEach var="candidate" items="${requestScope.allcandidates}" >
+<c:forEach var="candidate" items="${requestScope.candidatelist}" >
 
 
 <h2><b>${candidate.ehdokas_id}:</b> ${candidate.etunimi} ${candidate.sukunimi} </h2>
@@ -62,6 +63,8 @@ ${candidate.edistaa}<br>
 
 </c:forEach>
 </table>
-
+<footer>
+ <p>Team 9 - Ville Lahtinen & Silja Markku </p>
+ </footer>
 </body>
 </html>
