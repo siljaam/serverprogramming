@@ -21,7 +21,7 @@ public class Dao {
 	public Dao() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conn=java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/gamedb", "appuser", "kukkuu");
+			conn=java.sql.DriverManager.getConnection("jdbc:mysql://localhost:3306/vaalikone", "kayttaja", "kukkuu");
 		} catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class Dao {
 		int count=0;
 		try {
 			stmt = conn.createStatement();
-			count=stmt.executeUpdate("insert into vaalikone(ehdokas_id, etunimi, sukunimi, puolue, ikä, kotikunta, ehdolle, edustaa, ammatti) "
+			count=stmt.executeUpdate("insert into ehdokkaat(ehdokas_id, etunimi, sukunimi, puolue, ikä, kotikunta, ehdolle, edustaa, ammatti) "
 					+ "values('"+candidate.getEhdokas_id()+"', '"+candidate.getEtunimi()+"' '"+candidate.getSukunimi()+"' '"+candidate.getPuolue()+" '"+candidate.getKotikunta()+"'"
 							+ "'"+candidate.getAmmatti()+"''"+candidate.getIka()+"' '"+candidate.getEhdolle()+"' '"+candidate.getEdistaa()+"')");
 		} catch (SQLException e) {
@@ -57,7 +57,7 @@ public class Dao {
 		int count=0;
 		try {
 			stmt = conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from vaalikone");
+			ResultSet rs=stmt.executeQuery("select * from ehdokkaat");
 			while (rs.next()) {
 				Candidates candidate=new Candidates();
 				candidate.setEhdokas_id(rs.getInt("EhdokasId"));
@@ -80,7 +80,7 @@ public class Dao {
 	
 	public int updateCandidate(Candidates candidate) {
 		int count = 0;
-		String sql = "update vaalikone set etunimi = ?, sukunimi = ? where ehdokas_id = ? where puolue =? where kotikunta =?"
+		String sql = "update ehdokkaat set etunimi = ?, sukunimi = ? where ehdokas_id = ? where puolue =? where kotikunta =?"
 				+ "where ika = ? where ehdolle = ? where edistaa = ? where ammatti = ?";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class Dao {
 	}
 	public int deleteCandidate(Candidates candidate) throws SQLException {
 		
-		String sql = "DELETE FROM vaalikone WHERE Ehdokas_id=?";
+		String sql = "DELETE FROM ehdokkaat WHERE Ehdokas_id=?";
 		 
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, candidate.getEhdokas_id());
@@ -119,7 +119,7 @@ public class Dao {
 	
 	public Candidates getCandidateInfo(int id) {
 		Candidates result = null;
-		String sql = "select * from vaalikone where ehdokas_id = ?";
+		String sql = "select * from ehdokkaat where ehdokas_id = ?";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 						
