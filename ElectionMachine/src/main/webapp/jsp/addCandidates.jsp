@@ -13,7 +13,18 @@
 <h2>Lis‰‰ uusi ehdokas</h2>
 
 <form>
-<label for="etunimi">Etunimi</label> <br>
+<form action='./addCandidate' method='post'>
+Etunimi: <input type='text' name='etunimi' value=''><br>
+Sukunimi: <input type='text' name='sukunimi' value=''><br>
+Puolue: <input type='text' name='puolue' value=''><br>
+Kotikunta: <input type='text' name='kotikunta' value=''><br>
+Ik‰: <input type='text' name='ika' value=''><br>
+Ammatti: <input type='text' name='ammatti' value=''><br>
+Miksi haluat ehdolle?: <input type='text' name='ehdolle' value=''><br>
+Mit‰ haluat edist‰‰?: <input type='text' name='edistaa' value=''><br>
+<input type='submit' name='ok' value='Tallenna'>
+</form>
+<!-- <label for="etunimi">Etunimi</label> <br>
 <input type="text" id="etunimi" name="etunimi"> <br><br>
 <label for="sukunimi">Sukunimi</label> <br>
 <input type="text" id="sukunimi" name="sukunimi"> <br><br>
@@ -32,6 +43,6 @@
 <textarea id="edistaa" name="edistaa" rows="3" cols="40">
 </textarea> <br><br>
 <input type='submit' name='Tallenna' value='Send'>
-</form>
+</form>-->
 </body>
 </html>
