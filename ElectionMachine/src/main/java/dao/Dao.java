@@ -57,7 +57,7 @@ public class Dao {
 		int count=0;
 		try {
 			stmt = conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from vaalikone");
+			ResultSet rs=stmt.executeQuery("select * from ehdokkaat");
 			while (rs.next()) {
 				Candidates candidate=new Candidates();
 				candidate.setEhdokas_id(rs.getInt("EhdokasId"));
