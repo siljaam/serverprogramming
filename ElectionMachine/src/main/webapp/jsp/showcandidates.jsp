@@ -26,19 +26,39 @@
 	<th>Miksi l‰hdit ehdolle eduskuntaan?</th>
 	<th>Mit‰ asioita haluat edist‰‰?</th>
 </tr>
-<c:forEach var="candidates" items="${sessionScope.allcandidates }">
-	<tr>
-		<td>${candidates.ehdokas_id }</td>
-		<td>${candidates.etunimi }</td>
-		<td>${candidates.sukunimi }</td>
-		<td>${candidates.puolue }</td>
-		<td>${candidates.kotikunta }</td>
-		<td>${candidates.ika }</td>
-		<td>${candidates.ammatti }</td>
-		<td>${candidates.ehdolle }</td>
-		<td>${candidates.edistaa }</td>
 
-	</tr>
+<c:forEach var="candidate" items="${requestScope.candidateslist}" >
+
+<h2><b>${candidate.ehdokas_id}:</b> ${candidate.etunimi} ${candidate.sukunimi} </h2>
+
+<b>Puolue: </b><br>
+
+${candidate.puolue} <br>
+
+<b>Kotipaikkakunta:</b><br>
+
+${candidate.kotikunta}<br>
+
+<b>Ik‰: </b><br>
+
+${candidate.ika}<br>
+
+<b>Ammatti:</b><br>
+
+${candidate.ammatti}<br>
+
+<b>Miksi haluat eduskuntaan?</b><br>
+
+${candidate.ehdolle}<br>
+
+<b>Mit‰ asioita haluat edist‰‰?</b><br>
+
+${candidate.edistaa}<br>
+
+<br> <br>
+
+
+
 </c:forEach>
 </table>
 
