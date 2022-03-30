@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
    <%@ page import="java.util.ArrayList" %>   
- <%@ page import="dao.Dao" %>   
+ <%@ page import="dao.Dao" %> 
+ <%@ include file="../header.html" %>  
 <!DOCTYPE html>
 <html>
 <head>

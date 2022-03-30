@@ -1,11 +1,15 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import com.google.api.server.spi.auth.common.User;
+
 import app.Candidates;
 
 
@@ -34,32 +38,38 @@ public class Dao {
 		}
 	}
 
-	public int saveGame(Game game) {
+	public int saveCandidate(Candidates candidate) {
 		Statement stmt=null;
 		int count=0;
 		try {
 			stmt = conn.createStatement();
-			count=stmt.executeUpdate("insert into gametable(breed, weight) values('"+game.getBreed()+"', "+game.getWeight()+")");
+			count=stmt.executeUpdate("insert into vaalikone(ehdokas_id, etunimi, sukunimi, puolue, ikä, kotikunta, ehdolle, edustaa, ammatti) "
+					+ "values('"+candidate.getEhdokas_id()+"', '"+candidate.getEtunimi()+"' '"+candidate.getSukunimi()+"' '"+candidate.getPuolue()+" '"+candidate.getKotikunta()+"'"
+							+ "'"+candidate.getIka()+"' '"+candidate.getEhdolle()+"' '"+candidate.getEdistaa()+"')");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return count;
 	}
 	
-	public ArrayList<Game> readAllGame() {
-		ArrayList<Game> list=new ArrayList<>();
+	public ArrayList<Candidates> readAllCandidates() {
+		ArrayList<Candidates> list=new ArrayList<>();
 		Statement stmt=null;
 		int count=0;
 		try {
 			stmt = conn.createStatement();
-			ResultSet rs=stmt.executeQuery("select * from gametable");
+			ResultSet rs=stmt.executeQuery("select * from vaalikone");
 			while (rs.next()) {
-				Game game=new Game();
-				game.setId(rs.getInt("id"));
-				game.setBreed(rs.getString("breed"));
-				game.setWeight(rs.getFloat("weight"));
-				list.add(game);
+				Candidates candidate=new Candidates();
+				candidate.setEhdokas_id(rs.getInt("id"));
+				candidate.setEtunimi(rs.getString("Etunimi"));
+				candidate.setSukunimi(rs.getString("Sukunimi"));
+				candidate.setPuolue(rs.getString("Puolue"));
+				candidate.setKotikunta(rs.getString("Kotikunta"));
+				candidate.setIka(rs.getInt("Ika"));
+				candidate.setEhdolle(rs.getString("Ehdolle"));
+				candidate.setEdistaa(rs.getString("Edistaa"));
+				list.add(candidate);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,34 +78,40 @@ public class Dao {
 		return list;
 	}
 	
-	public int updateGame(Game game) {
+	public int updateCandidate(Candidates candidate) {
 		int count = 0;
-		String sql = "update gametable set breed = ?, weight = ? where id = ?";
+		String sql = "update vaalikone set etunimi = ?, sukunimi = ? where ehdokas_id = ? where puolue =? where kotikunta =?"
+				+ "where ika = ? where ehdolle = ? where edistaa = ? where ammatti = ?";
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			
-			stmt.setString(1, game.getBreed());
-			stmt.setFloat(2, game.getWeight());
-			
-			stmt.setInt(3, game.getId());
+			stmt.setString(1, candidate.getEtunimi());
+			stmt.setString(2, candidate.getSukunimi());
+			stmt.setInt(3, candidate.getEhdokas_id());
+			stmt.setString(4, candidate.getPuolue());
+			stmt.setString(5, candidate.getKotikunta());
+			stmt.setInt(6, candidate.getIka());
+			stmt.setString(7, candidate.getEhdolle());
+			stmt.setString(8, candidate.getEdistaa());
+			stmt.setString(9, candidate.getAmmatti());
 			
 			count = stmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return count;
 	}
-	public int deleteGame(Game game) throws SQLException {
+	public int deleteCandidate(Candidates candidate) throws SQLException {
 		
-		String sql = "DELETE FROM gametable WHERE id=?";
+		String sql = "DELETE FROM vaalikone WHERE Ehdokas_id=?";
 		 
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, game.getId());
+		stmt.setInt(1, candidate.getEhdokas_id());
 		 
 		int remove = stmt.executeUpdate();
 		if (remove > 0) {
-		    System.out.println("A user was deleted successfully!");
+		    System.out.println("Ehdokas poistettu onnistuneesti!");
 		}
 		
 		return remove;
@@ -116,10 +132,44 @@ public class Dao {
 				result.setEhdokas_id(resultset.getInt("id"));
 				result.setEtunimi(resultset.getString("Etunimi"));
 				result.setSukunimi(resultset.getString("Sukunimi"));
+				result.setPuolue(resultset.getString("Puolue"));
+				result.setKotikunta(resultset.getString("Kotikunta"));
+				result.setIka(resultset.getInt("ika"));
+				result.setEhdolle(resultset.getString("Ehdolle"));
+				result.setEdistaa(resultset.getString("Edistaa"));
+				result.setAmmatti(resultset.getString("Ammatti"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
+	
+	 public User checkLogin(String email, String password) throws SQLException,
+     ClassNotFoundException {
+ String jdbcURL = "jdbc:mysql://localhost:3306/vaalikone";
+ String dbUser = "root";
+ String dbPassword = "password";
+
+ Class.forName("com.mysql.jdbc.Driver");
+ Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
+ String sql = "SELECT * FROM kirjautuminen WHERE email = ? and password = ?";
+ PreparedStatement statement = connection.prepareStatement(sql);
+ statement.setString(1, email);
+ statement.setString(2, password);
+
+ ResultSet result = statement.executeQuery();
+
+ User user = null;
+/*
+ if (result.next()) {
+     user = new User(user);
+     ((Object) user).setFullname(result.getString("fullname"));
+     ((Object) user).setEmail(email);
+ } this needs some fixing
+*/
+ connection.close();
+
+ return user;
+}
 }
