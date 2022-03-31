@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.google.api.server.spi.auth.common.User;
+import app.User;
 
 import app.Candidates;
 
@@ -146,16 +146,10 @@ public class Dao {
 		return result;
 	}
 	
-	/* public User checkLogin(String email, String password) throws SQLException,
+	 public User checkLogin(String email, String password) throws SQLException,
      ClassNotFoundException {
- String jdbcURL = "jdbc:mysql://localhost:3306/vaalikone";
- String dbUser = "root";
- String dbPassword = "password";
-
- Class.forName("com.mysql.jdbc.Driver");
- Connection connection = DriverManager.getConnection(jdbcURL, dbUser, dbPassword);
  String sql = "SELECT * FROM kirjautuminen WHERE email = ? and password = ?";
- PreparedStatement statement = connection.prepareStatement(sql);
+ PreparedStatement statement = conn.prepareStatement(sql);
  statement.setString(1, email);
  statement.setString(2, password);
 
@@ -164,13 +158,13 @@ public class Dao {
  User user = null;
 
  if (result.next()) {
-     user = new User(user);
-     ((Object) user).setFullname(result.getString("fullname"));
-     ((Object) user).setEmail(email);
- } this needs some fixing
+     user = new User();
+     user.setNimi(result.getString("Nimi"));
+     user.setEmail(email);
+ } 
 
- connection.close();
+ conn.close();
 
- return user;*/
+ return user;
 }
-
+}
