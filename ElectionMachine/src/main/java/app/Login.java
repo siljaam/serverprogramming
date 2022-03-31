@@ -1,8 +1,8 @@
-/*package app;
+package app;
 
 import javax.servlet.http.HttpServlet;
 
-import com.google.api.server.spi.auth.common.User;
+import app.User;
 
 import dao.Dao;
 
@@ -46,5 +46,5 @@ public class Login extends HttpServlet {
 	        }
 	    }
 }
-	*/
+	
 	  

@@ -1,9 +1,12 @@
+package app;
 public class User {
 	private int id;
     private String nimi;
     private String email;
     private String salasana;
-    
+    public User() {
+    	
+    }
     
 	    public int getId() {
 		return id;
